@@ -1,15 +1,15 @@
 # Try it
-https://boiling-ridge-17442.herokuapp.com
+
 # Installation
 
 1. Clone or download repository
 
-   https://github.com/arezki-k/EcommerceSymfony
+   https://github.com/arezki-k/blog_symfony
 
 2. Move to project directory and run composer 
  
     ```
-    cd ./EcommerceSymfony
+    cd ./blog_symfony
     composer install
     ```
 3. Configure the .env with your database url, user and password.
