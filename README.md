@@ -1,5 +1,8 @@
 # Try it
-    https://arezki-kacioui-blog.herokuapp.com
+
+https://arezki-kacioui-blog.herokuapp.com
+
+use `admin@mail.com` as email and `admin` as password to connect as an admin and have access to admin dashboard.
 # Installation
 
 1. Clone or download repository
@@ -253,4 +256,15 @@ for example:
 doctrine:
     url: '%env(resolve(DATABASE_URL))%'
 
+```
+
+### Heroku deploy
+[Tutorial](https://devcenter.heroku.com/articles/deploying-symfony4)
+```shell
+    heroku create
+    echo 'web: heroku-php-apache2 public/' > Procfile
+    git add Procfile
+    git commit -m "Heroku Procfile"
+    heroku config:set APP_ENV=prod
+    git push heroku master
 ```
