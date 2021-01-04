@@ -1,29 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Ajouter un article {% endblock %}
+{% block title %}Ajouter un article
+{% endblock %}
 {# ... #}
 {# this tag only applies to the forms defined in this template #}
 {% form_theme publishForm 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-<h1 style="text-align:center">
-Publier un article     
-</h1>
+	<h1 style="text-align:center">
+		Publier un article
+	</h1>
 
-{{form_start(publishForm)}}
+	{{form_start(publishForm)}}
 
 
-{{form_row(publishForm.title, {'attr':{
+	{{form_row(publishForm.title, {'attr':{
     'placeholder' : "Titre de l'article"}}) }}
-{{form_row(publishForm.category) }}    
-{{form_row(publishForm.content, {'attr':{
+	{{form_row(publishForm.category) }}
+	{{form_row(publishForm.content, {'attr':{
     'placeholder':" Contenu de l'article"}}) }}
-{{form_row(publishForm.image, {'attr':{
+	{{form_row(publishForm.image, {'attr':{
     'placeholder':"Url de l'image"}}) }}
 
 
-<button type="submit" class="btn bnt-success">
-Publier           
-</button>
+	<button type="submit" class="btn bnt-success">
+		Publier
+	</button>
 
-{{form_end(publishForm)}}
+	{{form_end(publishForm)}}
 {% endblock %}

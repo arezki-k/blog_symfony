@@ -21,10 +21,12 @@ class BlogController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(): Response
+    public function index(ArticleRepository $repo, Request $request): Response
     {
+
+        $articles = $repo->findAll();
         return $this->render('blog/index.html.twig', [
-            'controller_name' => 'BlogController',
+            'articles' => $articles,
         ]);
     }
     /**

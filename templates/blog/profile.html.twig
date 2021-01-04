@@ -8,46 +8,52 @@
 
 	<div class="album py-5 bg-light">
 		<div class="container">
-			<h2>Articles</h2>
-				
-				<div class="Articles">
+			<h2>Mes articles</h2>
 
-					<hr/>
+			<div class="Articles">
+
+				<hr/>
 
 
-					<div class="row">
-						{% for article in articles %}
-							<div class="col-md-4">
-								<div class="card mb-4 box-shadow" style="height: 100%">
-									<img class="card-img-top" src="{{ article.image }}" alt="Card image cap" height="300rem"/>
-									<div class="card-body text-center">
-										<h5 class="card-title">
-											{{ article.title }}
-										</h5>
-										
-										<div class="row"></div>
-										
-										<button type="button" class="btn btn-dark btn-lg btn-block">
-											<a href="{{path('blog_article',{'id':article.id})}}">Lire la suite ...</a>
-										</button>
-                                        <button type="button" class="btn btn-dark btn-lg btn-block">
-											<a href="{{path('blog_article_edit',{'id':article.id})}}">Editer</a>
-										</button>
-                                        <button type="button" class="btn btn-dark btn-lg btn-block">
-											<a href="{{path('blog_article_delete',{'id':article.id})}}">Supprimer</a>
-										</button>
+				<div class="row">
+					{% for article in articles %}
+						<div class="col-md-4">
+							<div class="card mb-4 box-shadow" style="height: 100%">
+								<img class="card-img-top" src="{{ article.image }}" alt="Card image cap" height="300rem"/>
+								<div class="card-body text-center">
+									<h5 class="card-title">
+										{{ article.title }}
+									</h5>
+									<div class="ml-md-auto mr-md-0 d-md-flex">
+										Créé le :
+										{{ article.publishedDate | date("d/m/Y", "Europe/Paris") }}
+										| mis à jour le :
+										{{ article.updatedDate | date("d/m/Y", "Europe/Paris")}}
 									</div>
 
+									<div class="row"></div>
+
+									<button type="button" class="btn btn-dark btn-lg btn-block">
+										<a href="{{path('blog_article',{'id':article.id})}}">Lire la suite ...</a>
+									</button>
+									<button type="button" class="btn btn-dark btn-lg btn-block">
+										<a href="{{path('blog_article_edit',{'id':article.id})}}">Editer</a>
+									</button>
+									<button type="button" class="btn btn-dark btn-lg btn-block">
+										<a href="{{path('blog_article_delete',{'id':article.id})}}">Supprimer</a>
+									</button>
 								</div>
 
 							</div>
-						{% endfor %}
-					</div>
 
+						</div>
+					{% endfor %}
 				</div>
 
 			</div>
+
 		</div>
+	</div>
 
 
-	{% endblock %}
+{% endblock %}

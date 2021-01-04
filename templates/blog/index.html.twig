@@ -1,6 +1,6 @@
 {% extends "base.html.twig" %}
 {% block body %}
-<section class="py-5 text-center container" style="background: url(''); background-size: cover; background-position: center top;">
+	<section class="py-5 text-center container" style="background: url(''); background-size: cover; background-position: center top;">
 		<div class="row py-lg-5">
 			<div class="col-lg-6 col-md-8 mx-auto">
 				<h1 class="fw-light">Bonjour !</h1>
@@ -8,4 +8,62 @@
 			</div>
 		</div>
 	</section>
-{% endblock %}
+
+	<!--Carousel Wrapper-->
+	<div
+		id="multi-item-example" class="carousel slide carousel-multi-item" data-ride="carousel">
+
+		<!--Controls-->
+		<div class="controls-top">
+			<a class="btn-floating" href="#multi-item-example" data-slide="prev">
+				<i class="fas fa-chevron-left"></i>
+			</a>
+			<a class="btn-floating" href="#multi-item-example" data-slide="next">
+				<i class="fas fa-chevron-right"></i>
+			</a>
+		</div>
+		<!--/.Controls-->
+
+		<!--Indicators-->
+		<ol class="carousel-indicators">
+			<li data-target="#multi-item-example" data-slide-to="0" class="active"></li>
+			<li data-target="#multi-item-example" data-slide-to="1"></li>
+
+		</ol>
+		<!--/.Indicators-->
+
+		<!--Slides-->
+		<div
+			class="carousel-inner" role="listbox">
+
+			<!--First slide-->
+			{% for article in articles %}
+
+
+				<div class="carousel-item active">
+
+					<div class="col-md-3" style="float:left">
+						<div class="card mb-2">
+							<img class="card-img-top" src="{{article.image}}" alt="Card image cap">
+							<div class="card-body">
+								<h4 class="card-title">{{article.title}}</h4>
+								<p class="card-text">{{article.category}}</p>
+								<div class="ml-md-auto mr-md-0 d-md-flex">
+									Créé le :
+									{{ article.publishedDate | date("d/m/Y", "Europe/Paris") }}
+									| mis à jour le :
+									{{ article.updatedDate | date("d/m/Y", "Europe/Paris")}}
+								</div>
+								<a class="btn btn-primary" href="{{path('blog_article',{'id':article.id})}}">Lire</a>
+							</div>
+						</div>
+					</div>
+				{% endfor %}
+
+
+			</div>
+			<!--/.Slides-->
+
+		</div>
+		<!--/.Carousel Wrapper-->
+	{% endblock %}

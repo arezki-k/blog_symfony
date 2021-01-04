@@ -1,24 +1,24 @@
 {% extends "base.html.twig" %}
-{% block title %}Editer un article{% endblock %}
+{% block title %}Editer un article
+{% endblock %}
 {% form_theme editForm 'bootstrap_4_layout.html.twig' %}
 {% block body %}
-<div>
-{{form_start(editForm)}}
+	<div>
+		{{form_start(editForm)}}
 
 
-{{form_row(editForm.title, {'attr':{
+		{{form_row(editForm.title, {'attr':{
     'placeholder' : "Titre de l'article"}}) }}
-{{form_row(editForm.category) }}    
-{{form_row(editForm.content, {'attr':{
+		{{form_row(editForm.category) }}
+		{{form_row(editForm.content, {'attr':{
     'placeholder':" Contenu de l'article"}}) }}
-{{form_row(editForm.image, {'attr':{
+		{{form_row(editForm.image, {'attr':{
     'placeholder':"Url de l'image"}}) }}
 
 
-<button type="submit" class="btn bnt-success">
-            Modifier 
-</button>
-{{ form_end(editForm) }}
-</div>
+		<button type="submit" class="btn bnt-success">
+			Modifier
+		</button>
+		{{ form_end(editForm) }}
+	</div>
 {% endblock %}
-
