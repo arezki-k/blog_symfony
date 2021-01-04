@@ -1,0 +1,47 @@
+{% extends "base.html.twig" %}
+{% block title %}
+    WeatherApi
+{% endblock %}
+{% form_theme cityForm 'bootstrap_4_layout.html.twig' %}
+{% block body %}
+
+{{form_start(cityForm)}}
+
+    {{ form_row(cityForm.city ,{'attr':{
+        'label':"Saisir le nom de la ville"}})}}
+
+<button type="submit" class="btn bnt-success">
+Valider            
+</button>
+{{form_end(cityForm)}}
+
+{% if weather is not defined or weather is empty %}
+
+Tapez le nom d'une ville (Montpellier)
+{% else %}
+
+    <div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-4 col-sm-12 col-xs-12">
+            <div class="card p-4">
+                <div class="d-flex">
+                    <h6 class="flex-grow-1">{{weather.location.name}}</h6>
+                    <h6>{{weather.current.observation_time}}</h6>
+                </div>
+                <div class="d-flex flex-column temp mt-5 mb-3">
+                    <h1 class="mb-0 font-weight-bold" id="heading"> {{weather.current.temperature}} </h1><span class="small grey">{{weather.current.weather_descriptions.0}}</span>
+                </div>
+                <div class="d-flex">
+                    <div class="temp-details flex-grow-1">
+                        <p class="my-1"> <img src="https://i.imgur.com/B9kqOzp.png" height="17px"> <span> Wind speed: {{weather.current.wind_speed}}KM/h </span> </p>
+                        <p class="my-1"> <img src="https://previews.123rf.com/images/vectorhome/vectorhome1803/vectorhome180300086/98121033-humidity-icon-humidity-weather-sensor-label-sticker-logo.jpg"height="25px"></img> <span> Humidity: {{weather.current.humidity}} %</span> </p>
+                    </div>
+                    <div> <img src={{weather.current.weather_icons.0}} width="100px"> </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% endblock %}

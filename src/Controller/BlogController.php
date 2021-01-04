@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Form\ArticleType;
 use Doctrine\ORM\EntityManager;
+use App\Repository\UserRepository;
 use App\Repository\ArticleRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,6 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class BlogController extends AbstractController
 {
@@ -47,21 +49,26 @@ class BlogController extends AbstractController
 
     /**
      * @Security("is_granted('ROLE_USER')")
-     * @Route("/article/publish", name="blog_article_publish")
+     * @Route("/post/publish", name="blog_article_publish")
      */
-    public function publish(EntityManagerInterface $em, Request $request, UserInterface $user):Response
+    public function publish(EntityManagerInterface $em, Request $request):Response
     {
+        $user = $this->getUser();
         $article = new Article();
-        $publishForm = $this->createForm(ArticleType::class, $article);
+        $publishForm = $this->createForm( ArticleType::class, $article);
         $publishForm->handleRequest($request);
 
         if($publishForm->isSubmitted() && $publishForm->isValid()){
-            $article->setAuthor($user->getEmail());
+            $article->setAuthor($user);
             $article->setPublishedDate(new \DateTime());
             $article->setUpdatedDate(new \DateTime());
-            $article->setUrlAlias($article->getId());
+            $article->setUrlAlias(md5(uniqid(rand(), true)));
             $em->persist($article);
             $em->flush();
+            return $this->redirectToRoute('blog_article', [
+                'id' => $article->getId()
+            ]);
+
         }
         return $this->render('blog/publish.html.twig',[
             'publishForm'=>$publishForm->createView()
