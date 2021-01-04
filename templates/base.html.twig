@@ -28,10 +28,16 @@
 							</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="">Articles</a>
+							<a class="nav-link" href="{{path('blog_articles')}}">Articles</a>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link" href="">Publier</a>
+							<a class="nav-link" href="{{path('blog_article_publish')}}">Publier</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="">Api Rick & Morty</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('api_last_five_articles') }}">Api locale</a>
 						</li>
 						{% if  not app.user %}
 							<li class="nav-item">
@@ -45,7 +51,7 @@
 								<a class="nav-link" href="{{path('app_logout')}}">Se déconnecter</a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" href="">Mon compte</a>
+								<a class="nav-link" href="{{path('profile')}}">Mon compte</a>
 							</li>
 						{% endif %}
 						{% if is_granted('ROLE_ADMIN') %}
