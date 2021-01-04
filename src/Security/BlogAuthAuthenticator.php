@@ -97,7 +97,7 @@ class BlogAuthAuthenticator extends AbstractFormLoginAuthenticator implements Pa
         }
 
         // For example : 
-        return new RedirectResponse($this->urlGenerator->generate('home'));
+        return new RedirectResponse($this->urlGenerator->generate('blog_articles'));
         //throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
